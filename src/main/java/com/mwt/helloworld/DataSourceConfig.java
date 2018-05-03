@@ -17,14 +17,14 @@ public class DataSourceConfig {
 	@Qualifier("musicDataSource")
 	@Primary
 	@ConfigurationProperties(prefix="music.datasource")
-	DataSource customerDataSource() {
+	DataSource musicDataSource() {
 		return DataSourceBuilder.create().build();
 	}
 	
 	@Bean
 	@Qualifier("music2DataSource")
 	@ConfigurationProperties(prefix="music2.datasource")
-	DataSource productDataSource() {
+	DataSource music2DataSource() {
 		return DataSourceBuilder.create().build();
 	}
 	
