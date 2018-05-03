@@ -10,6 +10,9 @@
     <#list customers as c>
     	${c.customer_label!}<br/>
     </#list>
+    <#list customers2 as c>
+    	${c.customer_label!}<br/>
+    </#list>
     <script src="/js/main.js"></script>
 </body>
 </html>
