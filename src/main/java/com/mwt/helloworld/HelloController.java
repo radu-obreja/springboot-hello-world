@@ -20,7 +20,7 @@ public class HelloController {
 	String home(ModelMap modal) {
 		log.info("Initializing database");
 
-		jdbcTemplate.execute("DROP TABLE customers IF EXISTS");
+		jdbcTemplate.execute("DROP TABLE customers");
         jdbcTemplate.execute("CREATE TABLE customers(id_customer VARCHAR(64), customer_label VARCHAR(255))");
         jdbcTemplate.execute("INSERT INTO customers(id_customer, customer_label) VALUES ('radu', 'Radu')");
         jdbcTemplate.execute("INSERT INTO customers(id_customer, customer_label) VALUES ('simo', 'Simo')");
