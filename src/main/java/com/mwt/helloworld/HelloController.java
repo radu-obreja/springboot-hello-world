@@ -18,12 +18,15 @@ public class HelloController {
 	
 	@GetMapping("/")
 	String home(ModelMap modal) {
-		log.info("Initializing database");
 
-		jdbcTemplate.execute("DROP TABLE customers");
-        jdbcTemplate.execute("CREATE TABLE customers(id_customer VARCHAR(64), customer_label VARCHAR(255))");
-        jdbcTemplate.execute("INSERT INTO customers(id_customer, customer_label) VALUES ('radu', 'Radu')");
-        jdbcTemplate.execute("INSERT INTO customers(id_customer, customer_label) VALUES ('simo', 'Simo')");
+		try {
+			log.info("Initializing database");
+	        jdbcTemplate.execute("CREATE TABLE customers(id_customer VARCHAR(64), customer_label VARCHAR(255))");
+	        jdbcTemplate.execute("INSERT INTO customers(id_customer, customer_label) VALUES ('radu', 'Radu')");
+	        jdbcTemplate.execute("INSERT INTO customers(id_customer, customer_label) VALUES ('simo', 'Simo')");
+		} catch (Exception e) {
+			log.info("Database already initioalized");
+		}
 
 		modal.put("customers", jdbcTemplate.query("SELECT * FROM customers", new MapMapper()));
 		return "index";
