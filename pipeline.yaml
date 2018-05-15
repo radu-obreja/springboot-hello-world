@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: List
+metadata: {}
+items:
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    annotations:
+      pipeline.alpha.openshift.io/uses: '[{"name": "hello-app", "namespace": "", "kind": "DeploymentConfig"}]'
+    name: hello-app-pipeline
+  spec:
+    source:
+      git:
+        ref: pipeline
+        uri: https://github.com/radu-obreja/springboot-hello-world.git
+      type: Git
+    strategy:
+      type: JenkinsPipeline
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: Jenkinsfile
